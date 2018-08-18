@@ -1,0 +1,26 @@
+*.iml
+.gradle
+/local.properties
+/.idea/
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+/.idea/markdown-navigator.xml
+.navigation
+output.json
+/obj
+
+#built application files
+*.apk
+*.ap_
+
+# files for the dex VM
+*.dex
+
+# generated files
+bin/
+gen/
+.idea/vcs.xml
+app/libs/
+.idea/markdown-exported-files.xml
