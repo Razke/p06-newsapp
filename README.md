@@ -8,6 +8,8 @@ Objective: create a News feed app which gives a user regularly-updated news from
 
 This project is stage 1 of a 2 stage project. For this stage, create an app to display recent news stories on a topic of your choice using an API.
 
+Note: the app is using a test key for The Guardian API. If the API rate limit has exceeded, you need to add your own API key to the code.
+
 Presentation images:
 
 Placeholder|Placeholder|Placeholder
@@ -24,9 +26,9 @@ This project is about combining various ideas and skills practiced throughout th
 
 ## Resources used in this project
 
-*
+* [Registering for a Guardian API key](https://bonobo.capi.gutools.co.uk/register/developer)
 
-*
+* [Used TheGuardian Open Platform to generate query](https://open-platform.theguardian.com/explore/)
 
 * [Fix for "Failed to load AppCompat ActionBar” error](https://stackoverflow.com/a/44858887/8651044)
 

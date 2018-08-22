@@ -1,26 +1,85 @@
+### JetBrains template
+# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion
+
 *.iml
-.gradle
-/local.properties
-/.idea/
-.DS_Store
+
 /build
 /captures
 .externalNativeBuild
-/.idea/markdown-navigator.xml
 .navigation
 output.json
 /obj
 
-#built application files
+## Directory-based project format:
+.idea/
+
+## File-based project format:
+*.ipr
+*.iws
+
+# IntelliJ
+/out/
+
+# mpeltonen/sbt-idea plugin
+.idea_modules/
+
+# JIRA plugin
+atlassian-ide-plugin.xml
+
+# Crashlytics plugin (for Android Studio and IntelliJ)
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+
+### OSX template
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+### Android template
+# Built application files
 *.apk
 *.ap_
 
-# files for the dex VM
+# Files for the Dalvik VM
 *.dex
 
-# generated files
+# Java class files
+*.class
+
+# Generated files
 bin/
 gen/
-.idea/vcs.xml
 app/libs/
-.idea/markdown-exported-files.xml
+
+# Gradle files
+.gradle/
+build/
+/*/build/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Proguard folder
+proguard/
