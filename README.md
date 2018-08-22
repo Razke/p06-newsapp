@@ -8,13 +8,9 @@ Objective: create a News feed app which gives a user regularly-updated news from
 
 This project is stage 1 of a 2 stage project. For this stage, create an app to display recent news stories on a topic of your choice using an API.
 
-Note: the app is using a test key for The Guardian API. If the API rate limit has exceeded, you need to add your own API key to the code.
+**Note: the app is using a test key for The Guardian API. If the API rate limit has exceeded, you need to add your own API key to the code.**
 
-Presentation images:
-
-Placeholder|Placeholder|Placeholder
-:-------------------------:|:-------------------------:|:-------------------------:
-<img src="" width="0" height="0">  |  <img src="" width="0" height="0">  |  <img src="" width="0" height="0">
+<img src="" width="" height="">
 
 This project is about combining various ideas and skills practiced throughout the course. They include:
 * Connecting to an API

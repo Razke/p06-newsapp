@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+
 /**
  * These list item layouts will be provided to an adapter view like ListView
  * to be displayed to the user.
@@ -43,6 +44,10 @@ public class NewsAdapter extends ArrayAdapter<News> {
         TextView titleView = listItemView.findViewById(R.id.title);
         // Display the title of the current news in that TextView
         titleView.setText(currentNews.getTitle());
+
+        TextView sectionView = listItemView.findViewById(R.id.section);
+        // Display the date of the current news in that TextView
+        sectionView.setText(currentNews.getSection());
 
         TextView dateView = listItemView.findViewById(R.id.date);
         // Display the date of the current news in that TextView

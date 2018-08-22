@@ -1,18 +1,25 @@
 package com.example.raz.newsapp;
 
+import android.app.LoaderManager;
+import android.app.LoaderManager.LoaderCallbacks;
+import android.content.Context;
 import android.content.Intent;
+import android.content.Loader;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class NewsActivity extends AppCompatActivity {
+public class NewsActivity extends AppCompatActivity
+        implements LoaderCallbacks<List<News>> {
 
     private static final String LOG_TAG = NewsActivity.class.getName();
 
@@ -22,10 +29,17 @@ public class NewsActivity extends AppCompatActivity {
     private static final String GUARDIAN_REQUEST_URL =
             "https://content.guardianapis.com/search?order-by=newest&show-fields=byline%2Cthumbnail&page-size=15&section=technology&api-key=test";
 
+    private static final int NEWS_LOADER_ID = 1;
+
     /**
      * Adapter for the list of news
      */
     private NewsAdapter mAdapter;
+
+    /**
+     * TextView that is displayed when the list is empty
+     */
+    private TextView mEmptyStateTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +49,10 @@ public class NewsActivity extends AppCompatActivity {
         // Find a reference to the {@link ListView} in the layout
         ListView newsListView = findViewById(R.id.list);
 
-        // Creates a new adapter that takes an empty list of news as input
+        mEmptyStateTextView = findViewById(R.id.empty_view);
+        newsListView.setEmptyView(mEmptyStateTextView);
+
+        // Create a new adapter that takes an empty list of news as input
         mAdapter = new NewsAdapter(this, new ArrayList<News>());
 
         // Set the adapter on the {@link ListView}
@@ -61,37 +78,54 @@ public class NewsActivity extends AppCompatActivity {
             }
         });
 
-        // Start the AsyncTask to fetch the news data
-        NewsAsyncTask task = new NewsAsyncTask();
-        task.execute(GUARDIAN_REQUEST_URL);
+        // Get a reference to the ConnectivityManager to check state of network connectivity
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        // Get details on the currently active default data network
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        // If there is a network connection, fetch data
+        if (networkInfo != null && networkInfo.isConnected()) {
+            // Get a reference to the LoaderManager, in order to interact with loaders.
+            LoaderManager loaderManager = getLoaderManager();
+            loaderManager.initLoader(NEWS_LOADER_ID, null, this);
+        } else {
+            // Otherwise, display error
+            // First, hide loading indicator so error message will be visible
+            View loadingIndicator = findViewById(R.id.loading_indicator);
+            loadingIndicator.setVisibility(View.GONE);
+            // Update empty state with no connection error message
+            mEmptyStateTextView.setText(R.string.no_internet_connection);
+        }
     }
 
-    /**
-     * {@link AsyncTask} to perform the network request on a background thread, and then
-     * update the UI with the list of news in the response.
-     */
-    private class NewsAsyncTask extends AsyncTask<String, Void, List<News>> {
-        @Override
-        protected List<News> doInBackground(String... urls) {
-            // Don't perform the request if there are no URLs, or the first URL is null
-            if (urls.length < 1 || urls[0] == null) {
-                return null;
-            }
+    @Override
+    public Loader<List<News>> onCreateLoader(int i, Bundle bundle) {
+        // Create a new loader for the given URL
+        return new NewsLoader(this, GUARDIAN_REQUEST_URL);
+    }
 
-            List<News> result = QueryUtils.fetchNewsData(urls[0]);
-            return result;
+    @Override
+    public void onLoadFinished(Loader<List<News>> loader, List<News> news) {
+        // Hide loading indicator because the data has been loaded
+        View loadingIndicator = findViewById(R.id.loading_indicator);
+        loadingIndicator.setVisibility(View.GONE);
+
+        // Set empty state text to display "No news found."
+        mEmptyStateTextView.setText(R.string.no_news);
+
+        // Clear the adapter of previous news data
+        mAdapter.clear();
+
+        // If there is a valid list of {@link News}, then add them to the adapter's
+        // data set. This will trigger the ListView to update.
+        if (news != null && !news.isEmpty()) {
+            mAdapter.addAll(news);
         }
+    }
 
-        @Override
-        protected void onPostExecute(List<News> data) {
-            // Clear the adapter of previous news data
-            mAdapter.clear();
-
-            // If there is a valid list of {@link News}, then add them to the adapter's
-            // data set. This will trigger the ListView to update.
-            if (data != null && !data.isEmpty()) {
-                mAdapter.addAll(data);
-            }
-        }
+    @Override
+    public void onLoaderReset(Loader<List<News>> loader) {
+        // Loader reset, so we can clear out our existing data.
+        mAdapter.clear();
     }
 }

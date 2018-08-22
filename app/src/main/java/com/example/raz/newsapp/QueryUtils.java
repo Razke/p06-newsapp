@@ -15,8 +15,12 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  * Helper methods related to requesting and receiving news data from The Guardian.
@@ -32,7 +36,7 @@ public final class QueryUtils {
     }
 
     /**
-     * Query the Guardian dataset and return a list of {@link News} objects.
+     * Query the The Guardian dataset and return a list of {@link News} objects.
      */
     public static List<News> fetchNewsData(String requestUrl) {
         // Create URL object
@@ -163,7 +167,16 @@ public final class QueryUtils {
                 String storyAuthor = fieldsObject.getString("byline");
                 String storyImage = fieldsObject.getString("thumbnail");
 
-                News story = new News(storyTitle, storySection, storyDate, storyUrl, storyAuthor, storyImage);
+                SimpleDateFormat dateObject = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm:ss'Z'", Locale.getDefault());
+                Date formatDate = null;
+                try {
+                    formatDate = dateObject.parse(storyDate);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                String storyDateFormat = formatDate(formatDate);
+
+                News story = new News(storyTitle, storySection, storyDateFormat, storyUrl, storyAuthor, storyImage);
 
                 news.add(story);
             }
@@ -172,5 +185,13 @@ public final class QueryUtils {
         }
         // Return the list of news
         return news;
+    }
+
+    /**
+     * Return the formatted date string from a Date object.
+     */
+    private static String formatDate(Date date) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy  hh:mm", Locale.getDefault());
+        return dateFormat.format(date);
     }
 }
