@@ -27,7 +27,5 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.raz.newsapp.NewsActivity" />
         </activity>
-
     </application>
-
 </manifest>

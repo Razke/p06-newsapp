@@ -111,13 +111,18 @@ public class NewsActivity extends AppCompatActivity
                 getString(R.string.settings_order_by_default)
         );
 
+        String section = sharedPrefs.getString(
+                getString(R.string.settings_section_key),
+                getString(R.string.settings_section_default)
+        );
+
         Uri baseUri = Uri.parse(GUARDIAN_REQUEST_URL);
         Uri.Builder uriBuilder = baseUri.buildUpon();
 
         uriBuilder.appendQueryParameter("order-by", orderBy);
-        uriBuilder.appendQueryParameter("section", "technology");
+        uriBuilder.appendQueryParameter("section", section);
         uriBuilder.appendQueryParameter("page-size", "15");
-        uriBuilder.appendQueryParameter("api-key", "test");
+        uriBuilder.appendQueryParameter("api-key", "21815270-d9e5-4954-8c59-659fed1022cc");
 
         return new NewsLoader(this, uriBuilder.toString());
     }

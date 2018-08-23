@@ -6,6 +6,7 @@
 
     <string name="settings_menu_item">Settings</string>
     <string name="settings_title">News Settings</string>
+
     <string name="settings_order_by_label">Order By</string>
     <string name="settings_order_by_key" translatable="false">order-by</string>
     <string name="settings_order_by_default" translatable="false">newest</string>
@@ -14,4 +15,19 @@
     <string name="settings_order_by_newest_value" translatable="false">newest</string>
     <string name="settings_order_by_oldest_label">Oldest</string>
     <string name="settings_order_by_oldest_value" translatable="false">oldest</string>
+
+    <string name="settings_section_label">Sections</string>
+    <string name="settings_section_key" translatable="false">section</string>
+    <string name="settings_section_default" translatable="false">technology</string>
+
+    <string name="settings_section_science_label">Science</string>
+    <string name="settings_section_science_value" translatable="false">science</string>
+    <string name="settings_section_education_label">Education</string>
+    <string name="settings_section_education_value" translatable="false">education</string>
+    <string name="settings_section_culture_label">Culture</string>
+    <string name="settings_section_culture_value" translatable="false">culture</string>
+    <string name="settings_section_business_label">Business</string>
+    <string name="settings_section_business_value" translatable="false">business</string>
+    <string name="settings_section_technology_label">Technology</string>
+    <string name="settings_section_technology_value" translatable="false">technology</string>
 </resources>

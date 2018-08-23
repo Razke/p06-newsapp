@@ -32,7 +32,7 @@ In this second and final stage, you'll add a preference screen to the News App y
 
 **Note: the app is using a test key for The Guardian API. If the API rate limit has exceeded, you need to add your own API key to the code.**
 
-<img src="https://i.imgur.com/bBQXyv1.jpg" width="250" height="500">
+<img src="https://i.imgur.com/4U6RUDt.jpg" width="250" height="500">
 
 This project is about combining various ideas and skills we’ve been practicing throughout the course. They include:
 
