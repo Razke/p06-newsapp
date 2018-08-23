@@ -159,13 +159,43 @@ public final class QueryUtils {
                 // Get a single story at position i within the list of news
                 JSONObject currentNews = storyArray.getJSONObject(i);
 
-                String storyTitle = currentNews.getString("webTitle");
-                String storySection = currentNews.getString("sectionName");
-                String storyDate = currentNews.getString("webPublicationDate");
-                String storyUrl = currentNews.getString("webUrl");
-                JSONObject fieldsObject = currentNews.getJSONObject("fields");
-                String storyAuthor = fieldsObject.getString("byline");
-                String storyImage = fieldsObject.getString("thumbnail");
+                String storyTitle = "N/A";
+                if (currentNews.has("webTitle")) {
+                    storyTitle = currentNews.getString("webTitle");
+                }
+
+                String storySection = "N/A";
+                if (currentNews.has("sectionName")) {
+                    storySection = currentNews.getString("sectionName");
+                }
+
+                String storyDate = "N/A";
+                if (currentNews.has("webPublicationDate")) {
+                    storyDate = currentNews.getString("webPublicationDate");
+                }
+
+                String storyUrl = "N/A";
+                if (currentNews.has("webUrl")) {
+                    storyUrl = currentNews.getString("webUrl");
+                }
+
+                String storyAuthor = "Author N/A";
+                if (currentNews.has("fields")) {
+                    JSONObject fieldsObject = currentNews.getJSONObject("fields");
+
+                    if (fieldsObject.has("byline")) {
+                        storyAuthor = fieldsObject.getString("byline");
+                    }
+                }
+
+                String storyImage = "Thumbnail N/A";
+                if (currentNews.has("fields")) {
+                    JSONObject fieldsObject = currentNews.getJSONObject("fields");
+
+                    if (fieldsObject.has("thumbnail")) {
+                        storyImage = fieldsObject.getString("thumbnail");
+                    }
+                }
 
                 SimpleDateFormat dateObject = new SimpleDateFormat("yyyy-MM-dd'T'kk:mm:ss'Z'", Locale.getDefault());
                 Date formatDate = null;
