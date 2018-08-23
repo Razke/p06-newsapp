@@ -28,7 +28,7 @@ This project is about combining various ideas and skills practiced throughout th
 
 * [Fix for "Failed to load AppCompat ActionBar” error](https://stackoverflow.com/a/44858887/8651044)
 
-* [Mentor review]()
+* [Mentor review](https://review.udacity.com/#!/reviews/1416116/shared)
 
 * Android Studio Plugins: CodeGlance, Key promoter, Markdown Navigator, Material Theme UI, WIFI ADB ULTIMATE, .ignore, Presentation Assistant, Android Drawable Importer
 
