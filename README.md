@@ -15,7 +15,9 @@ For this stage, create an app to display recent news stories on a topic of your 
 
 **Note: the app is using a test key for The Guardian API. If the API rate limit has exceeded, you need to add your own API key to the code.**
 
-<img src="https://i.imgur.com/0YGogm9.jpg" width="250" height="500">
+NewsActivity **Stage 1**|EmptyView No News|EmptyView No Internet
+:-------------------------:|:-------------------------:|:-------------------------:
+<img src="https://i.imgur.com/0YGogm9.jpg" width="250" height="500"> | <img src="https://i.imgur.com/QkvsSHn.jpg" width="250" height="500"> | <img src="https://i.imgur.com/www1dS0.jpg" width="250" height="500">
 
 This project is about combining various ideas and skills practiced throughout the course. They include:
 * Connecting to an API
@@ -32,7 +34,11 @@ In this second and final stage, you'll add a preference screen to the News App y
 
 **Note: the app is using a test key for The Guardian API. If the API rate limit has exceeded, you need to add your own API key to the code.**
 
-<img src="https://i.imgur.com/4U6RUDt.jpg" width="250" height="500">
+NewsActivity Settings Menu Icon **Stage 2**|Settings Activity
+:-------------------------:|:-------------------------:
+<img src="https://i.imgur.com/BfAxKsB.jpg" width="255" height="500">  |  <img src="https://i.imgur.com/4U6RUDt.jpg" width="250" height="500">
+
+
 
 This project is about combining various ideas and skills we’ve been practicing throughout the course. They include:
 
@@ -43,6 +49,10 @@ This project is about combining various ideas and skills we’ve been practicing
 
 
 ## Resources used in this project
+* [Changing onBackPressed animation](https://stackoverflow.com/a/12047942/8651044)
+
+* [Checking if there is an app to open the intent](https://cloud.tencent.com/developer/article/1122024)
+
 * [Registering for a Guardian API key](https://bonobo.capi.gutools.co.uk/register/developer)
 
 * [Used TheGuardian Open Platform to generate query](https://open-platform.theguardian.com/explore/)
@@ -53,7 +63,9 @@ This project is about combining various ideas and skills we’ve been practicing
 
 * [Mentor review for Stage 1](https://review.udacity.com/#!/reviews/1416116/shared)
 
-* [Mentor review for Stage 2]()
+* [Mentor review for Stage 2 #1](https://review.udacity.com/#!/reviews/1417631/shared)
+
+* [Mentor review for Stage 2 #2](https://review.udacity.com/#!/reviews/shared)
 
 * Android Studio Plugins:
     * [CodeGlance](https://plugins.jetbrains.com/plugin/7275-codeglance)

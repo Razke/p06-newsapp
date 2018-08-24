@@ -73,4 +73,13 @@ public class SettingsActivity extends AppCompatActivity {
         }
         return false;
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Activity currentActivity = SettingsActivity.this;
+        Intent i = new Intent(currentActivity, NewsActivity.class);
+        currentActivity.startActivity(i);
+        overridePendingTransition(R.anim.anim_fade_in, R.anim.anim_fade_out);
+    }
 }

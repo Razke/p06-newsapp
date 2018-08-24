@@ -32,6 +32,8 @@ public final class QueryUtils {
      */
     private static final String LOG_TAG = QueryUtils.class.getSimpleName();
 
+    private static final String NOT_AVAILABLE = "N/A";
+
     private QueryUtils() {
     }
 
@@ -159,27 +161,27 @@ public final class QueryUtils {
                 // Get a single story at position i within the list of news
                 JSONObject currentNews = storyArray.getJSONObject(i);
 
-                String storyTitle = "N/A";
+                String storyTitle = NOT_AVAILABLE;
                 if (currentNews.has("webTitle")) {
                     storyTitle = currentNews.getString("webTitle");
                 }
 
-                String storySection = "N/A";
+                String storySection = NOT_AVAILABLE;
                 if (currentNews.has("sectionName")) {
                     storySection = currentNews.getString("sectionName");
                 }
 
-                String storyDate = "N/A";
+                String storyDate = NOT_AVAILABLE;
                 if (currentNews.has("webPublicationDate")) {
                     storyDate = currentNews.getString("webPublicationDate");
                 }
 
-                String storyUrl = "N/A";
+                String storyUrl = NOT_AVAILABLE;
                 if (currentNews.has("webUrl")) {
                     storyUrl = currentNews.getString("webUrl");
                 }
 
-                String storyAuthor = "Author N/A";
+                String storyAuthor = NOT_AVAILABLE;
                 if (currentNews.has("fields")) {
                     JSONObject fieldsObject = currentNews.getJSONObject("fields");
 
@@ -188,7 +190,7 @@ public final class QueryUtils {
                     }
                 }
 
-                String storyImage = "Thumbnail N/A";
+                String storyImage = NOT_AVAILABLE;
                 if (currentNews.has("fields")) {
                     JSONObject fieldsObject = currentNews.getJSONObject("fields");
 

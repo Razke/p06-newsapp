@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -24,7 +26,6 @@ import java.util.List;
 
 public class NewsActivity extends AppCompatActivity
         implements LoaderCallbacks<List<News>> {
-
     private static final String LOG_TAG = NewsActivity.class.getName();
 
     /**
@@ -41,9 +42,9 @@ public class NewsActivity extends AppCompatActivity
     private NewsAdapter mAdapter;
 
     /**
-     * TextView that is displayed when the list is empty
+     * TextView that warns the user when the list is empty
      */
-    private TextView mEmptyStateTextView;
+    private TextView mEmptyStateTextViewWarning;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +54,8 @@ public class NewsActivity extends AppCompatActivity
         // Find a reference to the {@link ListView} in the layout
         ListView newsListView = findViewById(R.id.list);
 
-        mEmptyStateTextView = findViewById(R.id.empty_view);
-        newsListView.setEmptyView(mEmptyStateTextView);
+        mEmptyStateTextViewWarning = findViewById(R.id.empty_view_warning);
+        newsListView.setEmptyView(mEmptyStateTextViewWarning);
 
         // Create a new adapter that takes an empty list of news as input
         mAdapter = new NewsAdapter(this, new ArrayList<News>());
@@ -77,8 +78,14 @@ public class NewsActivity extends AppCompatActivity
                 // Create a new intent to view the news URI
                 Intent websiteIntent = new Intent(Intent.ACTION_VIEW, newsUri);
 
-                // Send the intent to launch a new activity
-                startActivity(websiteIntent);
+                // Verify there is an app to open the intent with
+                PackageManager packageManager = getPackageManager();
+                List<ResolveInfo> activities = packageManager.queryIntentActivities(websiteIntent, 0);
+                boolean isIntentSafe = activities.size() > 0;
+                if (isIntentSafe) {
+                    // Send the intent to launch a new activity
+                    startActivity(websiteIntent);
+                }
             }
         });
 
@@ -98,13 +105,12 @@ public class NewsActivity extends AppCompatActivity
             View loadingIndicator = findViewById(R.id.loading_indicator);
             loadingIndicator.setVisibility(View.GONE);
             // Update empty state with no connection error message
-            mEmptyStateTextView.setText(R.string.no_internet_connection);
+            mEmptyStateTextViewWarning.setText(R.string.no_internet_connection);
         }
     }
 
     @Override
     public Loader<List<News>> onCreateLoader(int i, Bundle bundle) {
-
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         String orderBy = sharedPrefs.getString(
                 getString(R.string.settings_order_by_key),
@@ -134,7 +140,7 @@ public class NewsActivity extends AppCompatActivity
         loadingIndicator.setVisibility(View.GONE);
 
         // Set empty state text to display "No news found."
-        mEmptyStateTextView.setText(R.string.no_news);
+        mEmptyStateTextViewWarning.setText(R.string.no_news);
 
         // Clear the adapter of previous news data
         mAdapter.clear();
