@@ -65,7 +65,7 @@ This project is about combining various ideas and skills we’ve been practicing
 
 * [Mentor review for Stage 2 #1](https://review.udacity.com/#!/reviews/1417631/shared)
 
-* [Mentor review for Stage 2 #2](https://review.udacity.com/#!/reviews/shared)
+* [Mentor review for Stage 2 #2](https://review.udacity.com/#!/reviews/1418520/shared) - really pleased with the notes received from this review and the added challenge.
 
 * Android Studio Plugins:
     * [CodeGlance](https://plugins.jetbrains.com/plugin/7275-codeglance)
